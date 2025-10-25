@@ -6,6 +6,7 @@ import { FormInput } from '../components/common/FormInput';
 import { useTicketStore } from '../store/useTicketStore';
 import { toast } from 'sonner';
 import { Ticket } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Login() {
   const navigate = useNavigate();
@@ -52,18 +53,59 @@ export function Login() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center bg-[#302C42] px-6 py-12">
+    <motion.div 
+      className="flex min-h-[calc(100vh-8rem)] items-center justify-center bg-[#302C42] px-6 py-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="w-full max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Illustration/Gradient */}
-          <div className="relative hidden overflow-hidden rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8] p-12 lg:flex lg:flex-col lg:justify-center">
-            <div className="glow-circle absolute -right-20 -top-20 size-64 rounded-full bg-white"></div>
-            <div className="glow-circle absolute -bottom-20 -left-20 size-80 rounded-full bg-[#302C42]"></div>
+          <motion.div 
+            className="relative hidden overflow-hidden rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8] p-12 lg:flex lg:flex-col lg:justify-center"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div 
+              className="glow-circle absolute -right-20 -top-20 size-64 rounded-full bg-white"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{ 
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            ></motion.div>
+            <motion.div 
+              className="glow-circle absolute -bottom-20 -left-20 size-80 rounded-full bg-[#302C42]"
+              animate={{ 
+                scale: [1, 1.15, 1],
+                opacity: [0.3, 0.4, 0.3]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            ></motion.div>
             
-            <div className="relative">
-              <div className="mb-6 flex size-16 items-center justify-center rounded-[1em] bg-white/20 backdrop-blur-sm">
+            <motion.div 
+              className="relative"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.div 
+                className="mb-6 flex size-16 items-center justify-center rounded-[1em] bg-white/20 backdrop-blur-sm"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Ticket className="size-10 text-white" />
-              </div>
+              </motion.div>
               <h2 className="mb-4 text-4xl text-white">
                 Welcome Back to TicketWave
               </h2>
@@ -76,10 +118,15 @@ export function Login() {
                 <p>✓ Real-time collaboration</p>
                 <p>✓ Advanced analytics</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column - Form */}
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
           <Card className="rounded-[1em] border-[#C0B7E8]/10 bg-[#3D3654] p-6 shadow-lg shadow-black/20 sm:p-8">
             <div className="mb-6 text-center sm:mb-8">
               <h1 className="gradient-text text-3xl">Log In</h1>
@@ -120,12 +167,17 @@ export function Login() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="mt-6 w-full gradient-button rounded-[1em]"
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Log In
-              </Button>
+                <Button
+                  type="submit"
+                  className="mt-6 w-full gradient-button rounded-[1em]"
+                >
+                  Log In
+                </Button>
+              </motion.div>
             </form>
 
             <p className="mt-6 text-center text-[#B1B1B1]">
@@ -135,8 +187,9 @@ export function Login() {
               </Link>
             </p>
           </Card>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

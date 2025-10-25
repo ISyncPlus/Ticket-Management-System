@@ -3,6 +3,7 @@ import { Ticket, LogOut, Menu, X } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useTicketStore } from '../../store/useTicketStore';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
   const location = useLocation();
@@ -14,13 +15,22 @@ export function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="border-b border-[#C0B7E8]/10 sticky top-0 z-50 backdrop-blur-sm">
+    <motion.header 
+      className="border-b border-[#C0B7E8]/10 sticky top-0 z-50 backdrop-blur-sm"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="mx-auto max-w-[1440px] px-6 py-8">
         <nav className="flex items-center justify-between" aria-label="Main navigation">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-linear-to-r from-[#8176AF] to-[#C0B7E8]">
+            <motion.div 
+              className="flex size-10 items-center justify-center rounded-lg bg-linear-to-r from-[#8176AF] to-[#C0B7E8]"
+              whileHover={{ rotate: 360, scale: 1.1 }}
+              transition={{ duration: 0.6 }}
+            >
               <Ticket className="size-6 text-white" />
-            </div>
+            </motion.div>
             <span className="gradient-text text-xl">TicketWave</span>
           </Link>
 
@@ -42,6 +52,7 @@ export function Header() {
           <div className="hidden items-center gap-6 lg:flex">
             {isAuthenticated ? (
               <>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/dashboard"
                   className={`transition-colors ${
@@ -52,6 +63,8 @@ export function Header() {
                 >
                   Dashboard
                 </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/tickets"
                   className={`transition-colors ${
@@ -62,8 +75,10 @@ export function Header() {
                 >
                   Tickets
                 </Link>
+                </motion.div>
                 <div className="flex items-center gap-3 border-l border-[#C0B7E8]/20 pl-6">
                   <span className="text-[#B1B1B1]">{user?.name}</span>
+                  <motion.div whileHover={{ scale: 1.1, rotate: 15 }} whileTap={{ scale: 0.9 }}>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -73,19 +88,24 @@ export function Header() {
                   >
                     <LogOut className="size-5" />
                   </Button>
+                  </motion.div>
                 </div>
               </>
             ) : (
               <>
                 <Link to="/login">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button variant="ghost" className="hover:bg-[#3D3654] text-[#E0E0E0]">
                     Login
                   </Button>
+                  </motion.div>
                 </Link>
                 <Link to="/signup">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button className="gradient-button rounded-[1em]">
                     Get Started
                   </Button>
+                  </motion.div>
                 </Link>
               </>
             )}
@@ -93,8 +113,15 @@ export function Header() {
         </nav>
 
         {/* Mobile Navigation */}
+        <AnimatePresence>
         {mobileMenuOpen && (
-          <div className="mt-4 border-t border-[#C0B7E8]/10 pt-4 lg:hidden">
+          <motion.div 
+            className="mt-4 border-t border-[#C0B7E8]/10 pt-4 lg:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             {isAuthenticated ? (
               <div className="flex flex-col gap-4">
                 <Link
@@ -149,9 +176,10 @@ export function Header() {
                 </Link>
               </div>
             )}
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 }
