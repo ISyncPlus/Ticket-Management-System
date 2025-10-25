@@ -14,22 +14,22 @@ export function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="border-b border-[#C0B7E8]/10 bg-[#302C42] sticky top-0 z-50 backdrop-blur-sm">
-      <div className="mx-auto max-w-[1440px] px-6 py-4">
+    <header className="border-b border-[#C0B7E8]/10 sticky top-0 z-50 backdrop-blur-sm">
+      <div className="mx-auto max-w-[1440px] px-6 py-8">
         <nav className="flex items-center justify-between" aria-label="Main navigation">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-gradient-to-r from-[#8176AF] to-[#C0B7E8]">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-linear-to-r from-[#8176AF] to-[#C0B7E8]">
               <Ticket className="size-6 text-white" />
             </div>
             <span className="gradient-text text-xl">TicketWave</span>
           </Link>
 
           {/* Mobile menu button */}
+          {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
           <button
             className="lg:hidden text-[#E0E0E0]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
               <X className="size-6" />

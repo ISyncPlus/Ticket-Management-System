@@ -75,7 +75,7 @@ export function Signup() {
       <div className="w-full max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Illustration/Gradient */}
-          <div className="relative hidden overflow-hidden rounded-[1em] bg-gradient-to-br from-[#C0B7E8] to-[#8176AF] p-12 lg:flex lg:flex-col lg:justify-center">
+          <div className="relative hidden overflow-hidden rounded-[1em] bg-linear-to-br from-[#C0B7E8] to-[#8176AF] p-12 lg:flex lg:flex-col lg:justify-center">
             <div className="glow-circle absolute -left-20 -top-20 size-64 rounded-full bg-white"></div>
             <div className="glow-circle absolute -bottom-20 -right-20 size-80 rounded-full bg-[#302C42]"></div>
             

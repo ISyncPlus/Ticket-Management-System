@@ -29,9 +29,6 @@ export function Dashboard() {
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-6 lg:mb-8">
           <h1 className="gradient-text text-3xl lg:text-4xl">Dashboard</h1>
-          <p className="mt-2 text-[#B1B1B1]">
-            Overview of your ticket management system
-          </p>
         </div>
 
         {/* Summary Cards */}
@@ -42,7 +39,7 @@ export function Dashboard() {
                 <p className="text-[#B1B1B1]">Total Tickets</p>
                 <p className="mt-2 text-3xl text-[#E0E0E0]">{totalTickets}</p>
               </div>
-              <div className="flex size-12 items-center justify-center rounded-[1em] bg-gradient-to-br from-[#8176AF] to-[#C0B7E8]">
+              <div className="flex size-12 items-center justify-center rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8]">
                 <Ticket className="size-6 text-white" />
               </div>
             </div>

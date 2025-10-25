@@ -56,7 +56,7 @@ export function Login() {
       <div className="w-full max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Illustration/Gradient */}
-          <div className="relative hidden overflow-hidden rounded-[1em] bg-gradient-to-br from-[#8176AF] to-[#C0B7E8] p-12 lg:flex lg:flex-col lg:justify-center">
+          <div className="relative hidden overflow-hidden rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8] p-12 lg:flex lg:flex-col lg:justify-center">
             <div className="glow-circle absolute -right-20 -top-20 size-64 rounded-full bg-white"></div>
             <div className="glow-circle absolute -bottom-20 -left-20 size-80 rounded-full bg-[#302C42]"></div>
             

@@ -19,7 +19,7 @@ export function Landing() {
         ></div>
 
         <div className="relative mx-auto max-w-[1440px] text-center">
-          <h1 className="mx-auto max-w-4xl bg-gradient-to-r from-[#C0B7E8] to-[#8176AF] bg-clip-text text-transparent text-4xl lg:text-6xl">
+          <h1 className="mx-auto max-w-4xl bg-linear-to-r from-[#C0B7E8] to-[#8176AF] bg-clip-text text-transparent text-4xl lg:text-6xl">
             Welcome to TicketWave
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-[#B1B1B1] text-lg lg:text-xl">
@@ -71,7 +71,7 @@ export function Landing() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             <Card className="rounded-[1em] border-[#C0B7E8]/10 bg-[#3D3654] p-6 shadow-lg shadow-black/20 transition-transform hover:scale-105 lg:p-8">
-              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-gradient-to-br from-[#8176AF] to-[#C0B7E8]">
+              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8]">
                 <Zap className="size-7 text-white" />
               </div>
               <h3 className="mb-3 text-[#E0E0E0]">Lightning Fast</h3>
@@ -82,7 +82,7 @@ export function Landing() {
             </Card>
 
             <Card className="rounded-[1em] border-[#C0B7E8]/10 bg-[#3D3654] p-6 shadow-lg shadow-black/20 transition-transform hover:scale-105 lg:p-8">
-              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-gradient-to-br from-[#8176AF] to-[#C0B7E8]">
+              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8]">
                 <Shield className="size-7 text-white" />
               </div>
               <h3 className="mb-3 text-[#E0E0E0]">Secure & Reliable</h3>
@@ -93,7 +93,7 @@ export function Landing() {
             </Card>
 
             <Card className="rounded-[1em] border-[#C0B7E8]/10 bg-[#3D3654] p-6 shadow-lg shadow-black/20 transition-transform hover:scale-105 sm:col-span-2 lg:col-span-1 lg:p-8">
-              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-gradient-to-br from-[#8176AF] to-[#C0B7E8]">
+              <div className="mb-4 flex size-14 items-center justify-center rounded-[1em] bg-linear-to-br from-[#8176AF] to-[#C0B7E8]">
                 <Users className="size-7 text-white" />
               </div>
               <h3 className="mb-3 text-[#E0E0E0]">Team Collaboration</h3>

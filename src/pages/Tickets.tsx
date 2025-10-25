@@ -85,10 +85,8 @@ export function Tickets() {
     <div className="flex-1 bg-[#302C42] px-6 py-8 lg:px-16 lg:py-12">
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-6 lg:mb-8">
-          <h1 className="gradient-text text-3xl lg:text-4xl">Manage Tickets</h1>
-          <p className="mt-2 text-[#B1B1B1]">
-            Create, track, and manage all your support tickets
-          </p>
+          <h1 className="gradient-text text-3xl lg:text-4xl pb-6">Manage Tickets</h1>
+
         </div>
 
         {/* Toolbar */}
