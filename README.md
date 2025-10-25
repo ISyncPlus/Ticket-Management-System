@@ -149,6 +149,14 @@ Both stores persist data to localStorage for data retention across sessions.
 - Tickets are stored in `localStorage` under the key `ticket-storage`
 - Mock data is pre-loaded with 3 sample tickets
 
+> **⚠️ SECURITY NOTE**: This is a demonstration application. In a production environment:
+> - NEVER store passwords in localStorage or any client-side storage
+> - Use a secure backend API for authentication
+> - Hash passwords server-side using bcrypt or similar algorithms
+> - Implement JWT tokens or secure session cookies
+> - Use HTTPS, CSRF protection, and other security best practices
+> - This app stores passwords in plain text for demo purposes only
+
 ## Customization
 
 ### Adding New Ticket Fields
