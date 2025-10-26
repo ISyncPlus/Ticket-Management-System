@@ -46,8 +46,11 @@ export function Login() {
       return;
     }
 
-    const userName = formData.email.split('@')[0];
-    login(formData.email, formData.password, userName);
+  const ok = login(formData.email, formData.password);
+    if (!ok) {
+      toast.error('Invalid email or password');
+      return;
+    }
     toast.success('Successfully logged in!');
     navigate('/dashboard');
   };

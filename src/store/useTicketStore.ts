@@ -16,16 +16,24 @@ export interface User {
   name: string;
 }
 
+export interface StoredUser {
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+}
+
 interface TicketState {
   tickets: Ticket[];
   user: User | null;
   isAuthenticated: boolean;
+  users: StoredUser[];
   addTicket: (ticket: Omit<Ticket, 'id' | 'createdAt' | 'updatedAt'>) => void;
   updateTicket: (id: string, ticket: Partial<Ticket>) => void;
   deleteTicket: (id: string) => void;
-  login: (email: string, password: string, name: string) => void;
+  login: (email: string, password: string) => boolean;
   logout: () => void;
-  signup: (email: string, password: string, name: string) => void;
+  signup: (email: string, password: string, name: string) => boolean;
 }
 
 export const useTicketStore = create<TicketState>()(
@@ -145,8 +153,9 @@ export const useTicketStore = create<TicketState>()(
         updatedAt: '2025-10-24T11:00:00Z'
       }
     ],
-      user: null,
-      isAuthenticated: false,
+  user: null,
+  isAuthenticated: false,
+  users: [],
 
       addTicket: (ticket) =>
         set((state) => ({
@@ -175,17 +184,54 @@ export const useTicketStore = create<TicketState>()(
           tickets: state.tickets.filter((ticket) => ticket.id !== id),
         })),
 
-      login: (email, _password, name) =>
-        set({
-          user: { id: Math.random().toString(36).substring(2, 11), email, name },
-          isAuthenticated: true,
-        }),
+  login: (email: string, password: string) => {
+        const stateUsers = (JSON.parse(localStorage.getItem('ticketapp_users') || 'null') as StoredUser[] | null) ?? undefined;
+        const usersList = stateUsers ?? undefined;
 
-      signup: (email, _password, name) =>
+        // prefer the in-memory users if available
+        const allUsers = usersList ?? (typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('ticketapp_users') || '[]') : []) as StoredUser[];
+
+        const matched = allUsers.find((u) => u.email === email && u.password === password);
+        if (matched) {
+          set({
+            user: { id: matched.id, email: matched.email, name: matched.name },
+            isAuthenticated: true,
+            users: allUsers,
+          });
+          return true;
+        }
+        // no match
+        set({ user: null, isAuthenticated: false });
+        return false;
+  },
+
+      signup: (email, password, name) => {
+        // load existing users from localStorage
+        const key = 'ticketapp_users';
+        const raw = localStorage.getItem(key);
+        const users: StoredUser[] = raw ? JSON.parse(raw) : [];
+
+        // prevent duplicate emails
+        if (users.find((u) => u.email === email)) {
+          return false;
+        }
+
+        const newUser: StoredUser = {
+          id: Math.random().toString(36).substring(2, 11),
+          email,
+          password,
+          name,
+        };
+        users.push(newUser);
+        localStorage.setItem(key, JSON.stringify(users));
+
         set({
-          user: { id: Math.random().toString(36).substring(2, 11), email, name },
+          user: { id: newUser.id, email: newUser.email, name: newUser.name },
           isAuthenticated: true,
-        }),
+          users,
+        });
+        return true;
+      },
 
       logout: () =>
         set({
@@ -199,6 +245,7 @@ export const useTicketStore = create<TicketState>()(
         tickets: state.tickets,
         user: state.user,
         isAuthenticated: state.isAuthenticated,
+        users: state.users,
       }),
     }
   )

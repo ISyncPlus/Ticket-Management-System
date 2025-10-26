@@ -66,7 +66,11 @@ export function Signup() {
       return;
     }
 
-    signup(formData.email, formData.password, formData.name);
+    const ok = signup(formData.email, formData.password, formData.name);
+    if (!ok) {
+      toast.error('An account with that email already exists');
+      return;
+    }
     toast.success('Account created successfully!');
     navigate('/dashboard');
   };
